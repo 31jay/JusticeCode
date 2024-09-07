@@ -48,7 +48,7 @@ def main(user):
             if st.button('Download Case Report',use_container_width=True):
                 placeholder=st.empty() 
                 html_content=report.generate_case_report(case,user)
-                report.generate_pdf(html_content,"report.css",output_filename=f"Case_{case}.pdf",case)
+                report.generate_pdf(html_content,"report.css",output_filename=f"Case_{case}.pdf",case=case,user=user)
                 # with open(f"Case_{case}.pdf", "rb") as file:
                 #     pdf_data = file.read()
                 # conn=db.connect_db()
@@ -80,3 +80,6 @@ def main(user):
         st.write(f'<iframe src="data:application/pdf;base64,{file_base64}" width="800" height="500"></iframe>', unsafe_allow_html=True)
     else:
         st.info('Select the downloads to view')
+        
+if __name__=="__main__":
+    main('31jay')

@@ -2,6 +2,7 @@ import streamlit as st
 import database as db 
 from datetime import date
 import pdfkit
+import psycopg2
 
 config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
 
@@ -132,8 +133,8 @@ def generate_case_report(case_id, username):
         <div class="footer">
             <div>
                 <p>Investigation with:</p>
-                <p style="font-size: 25px"><strong>CRIMINOVA</strong></p>
-                <P>Solving Crime Together</p>
+                <p style="font-size: 25px"><strong>CrimeNetX</strong></p>
+                <P>Crime Solve Done</p>
         </div>
     </body>
     </html>
@@ -142,7 +143,7 @@ def generate_case_report(case_id, username):
     return html_content
 
 
-def generate_pdf(html_content,css_content,output_filename,case):
+def generate_pdf(html_content,css_content,output_filename,case,user):
     if pdfkit.from_string(html_content, output_filename,configuration=config,css=css_content):
         placeholder=st.empty() 
         with open(f"Case_{case}.pdf", "rb") as file:
@@ -151,7 +152,7 @@ def generate_pdf(html_content,css_content,output_filename,case):
                 db.run_query(conn,f"""INSERT INTO pdf_reports (file, username,file_name) VALUES ({psycopg2.Binary(pdf_data)},'{user}','Case_{case}')
                              ON CONFLICT (file_name) DO UPDATE SET file_name = 'Case_{case}'
                              """,msg="File Saved",slot=placeholder)
-        st.success(f"PDF generated: [{output_filename}]({output_filename})")
+        # st.success(f"PDF generated: [{output_filename}]({output_filename})")
     else:
         st.error('Failed to generate case report !')
 
