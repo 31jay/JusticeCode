@@ -11,7 +11,7 @@ def lat_long(query):
 
 def map_lat_long(query,Additional=''):
     data=lat_long(query) 
-    m = folium.Map(location=[27.724502,85.339213], zoom_start=10,height=300,width=400,control_scale=True,zoom_control=True) 
+    m = folium.Map(location=[27.724502,85.339213], zoom_start=10,height=500,width=400,control_scale=True,zoom_control=True) 
     if data:
         for location in data:
             conn = db.connect_db()

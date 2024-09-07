@@ -20,37 +20,19 @@ st.set_page_config(
 if 'loggedin_user' not in st.session_state:
     st.session_state.loggedin_user=None
 
-def login_window():
-    #3 columns to center the gif image in the ratio 1:3:1
-    col1,col2,col3=st.columns([3,3,3],gap="medium")
-    with col2:
-        st.markdown("<br><br><br><br>", unsafe_allow_html=True)      
-        st.image('icons/criminova.gif',use_column_width=True)
-
-        st.markdown("<br>", unsafe_allow_html=True)  
-        #text input for username     
-        username=st.text_input('User Name:',type="default",label_visibility='collapsed',placeholder='UserName')
-        
-        #text input for password
-        password=st.text_input('Password',type="password",label_visibility='collapsed',placeholder='Password')
-
-        sub_column1, sub_column2,sub_column3=st.columns([3,2,3])
-        with sub_column2:
-            submitted=st.button('Login',use_container_width=True)
-
 
 def landing_page():
     with st.sidebar:
-        st.image('icons\criminova.gif',use_column_width=True)
+        st.image("icons\\criminova.gif",use_column_width=True)
         st.markdown("<br>", unsafe_allow_html=True)  
         selected=option_menu(
-            menu_title='',options=['Dashboard','New Report','Case Reports','Investigators','Authorized ','Case Mapping','Tactic Of Day','Downloads'],
+            menu_title='',options=['Dashboard','New Report','Case Reports','Investigators','Authorized ','Case Mapping','Downloads'],
             styles={
         "container": {"padding": "0!important", "background-color": " #333333"},
         "icon": {"color": "white", "font-size": "15px"}, 
         "nav-link": {"font-size": "15px", "text-align": "justify", "margin":"0px", "--hover-color": "#595959"},
         "nav-link-selected": {"background-color": " #00334d"}},
-        icons=['boxes','file-earmark-plus-fill','file-text-fill','person-lines-fill','person-lines-fill','crosshair2','bullseye','file-earmark-arrow-down-fill'])
+        icons=['boxes','file-earmark-plus-fill','file-text-fill','person-lines-fill','person-lines-fill','crosshair2','file-earmark-arrow-down-fill'])
 
         st.button('Log Out',on_click=logout,use_container_width=True)
     return selected
@@ -228,8 +210,6 @@ if __name__ == "__main__":
             case_mapping.main() 
         elif selected=='Dashboard':
             dashboard.main(st.session_state.loggedin_user) 
-        # elif selected=='Tactic Of Day':
-        #     tactics.main() 
         elif selected=='Downloads':
             downloads.main(st.session_state.loggedin_user) 
     else:
