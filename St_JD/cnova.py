@@ -9,6 +9,7 @@ import officers
 import authorized
 import case_mapping   
 import dashboard 
+import downloads
 
 st.set_page_config(
     page_icon='icons/icon.png',
@@ -229,8 +230,8 @@ if __name__ == "__main__":
             dashboard.main(st.session_state.loggedin_user) 
         # elif selected=='Tactic Of Day':
         #     tactics.main() 
-        # elif selected=='Downloads':
-        #     downloads.main(st.session_state.loggedin_user) 
+        elif selected=='Downloads':
+            downloads.main(st.session_state.loggedin_user) 
     else:
         st.session_state.logged_in=False 
     
