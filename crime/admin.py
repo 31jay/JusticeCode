@@ -1,3 +1,21 @@
 from django.contrib import admin
 from .models import *
 
+admin.site.register(Authorized)
+admin.site.register(CaseReport)
+admin.site.register(CaseImage)
+admin.site.register(CaseTimeline)
+admin.site.register(Evidence)
+admin.site.register(Message)
+admin.site.register(NatureOfCase)
+admin.site.register(OfficerRecord)
+admin.site.register(OfficerArchive)
+admin.site.register(OfficerAndCase)
+admin.site.register(PDFReport)
+admin.site.register(Suspect)
+admin.site.register(Victim)
+admin.site.register(Tactic)
+admin.site.register(PublicUser)
+admin.site.register(AdminPosted)
+admin.site.register(PublicResponse)
+admin.site.register(PublicReport)
