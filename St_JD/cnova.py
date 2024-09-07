@@ -227,10 +227,10 @@ if __name__ == "__main__":
             case_mapping.main() 
         elif selected=='Dashboard':
             dashboard.main(st.session_state.loggedin_user) 
-        elif selected=='Tactic Of Day':
-            tactics.main() 
-        elif selected=='Downloads':
-            downloads.main(st.session_state.loggedin_user) 
+        # elif selected=='Tactic Of Day':
+        #     tactics.main() 
+        # elif selected=='Downloads':
+        #     downloads.main(st.session_state.loggedin_user) 
     else:
         st.session_state.logged_in=False 
     
