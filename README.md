@@ -48,5 +48,5 @@ pip (Python package manager)
 Installation
 
 Clone the repository:
-Copygit clone https://github.com/31jay/JusticeCode/.git
+Copygit clone https://github.com/31jay/JusticeCode.git
 Install dependencies
