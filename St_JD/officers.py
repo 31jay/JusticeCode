@@ -169,7 +169,7 @@ def current_officers_record(my_officers):
 
 
 def main():
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Investigators</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Investigators</p>', unsafe_allow_html=True)
     current_officers,formr_officers=all_officers() 
     current,past=st.tabs(['Current Investigators','Former Investigators'])
     try:
@@ -198,6 +198,8 @@ def main():
                     past_officer_record(details)
     except Exception as e:
         st.warning(f'Something wrong with database {e}')
+    
+    db.footer() 
 
 if __name__=='__main__':
     main()

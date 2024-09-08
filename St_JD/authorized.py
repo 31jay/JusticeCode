@@ -23,7 +23,7 @@ def get_dataframe():
 
 def auth_interface(user):
     try:
-        st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Authorized Users</p>', unsafe_allow_html=True)
+        st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Authorized Users</p>', unsafe_allow_html=True)
         conn=db.connect_db()
         system_admin=db.from_db(conn,f"""select name,role,image,last_logged_in,email,contact 
                                 from authorized INNER JOIN officer_record 
@@ -253,6 +253,8 @@ def auth_interface(user):
                 
     except Exception as e:
         st.error(f'Something Wrong with database: {e}')
+    
+    db.footer() 
 
 if __name__=='__main__':
     auth_interface('jay') 

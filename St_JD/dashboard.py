@@ -20,17 +20,17 @@ def msg(user):
         st.session_state.store_message=False 
     with st.container(height=400):
         msgs=get_all_messages() 
-        image='icons\chat.jpg' 
+        image='icons\\chat.jpg' 
         if msgs:
             for date,m_time,message,username in msgs:
                 if date==datetime.datetime.now().date():
                     date='Today'
                 time=f"{m_time.hour}:{m_time.minute}"
-                st.write(f"""<p style="font-size: 10px; color: green;  margin-bottom: -100px; text-align: center;" >{username}::{date},{time} </p>
+                st.write(f"""<p style="font-size: 10px; color: {db.headText};  margin-bottom: -100px; text-align: center;" >{username}::{date},{time} </p>
                          """,unsafe_allow_html=True) 
                 st.chat_message(username,avatar=image).write(f"""<p style="margin-top: -10px" >{message}</p>""",unsafe_allow_html=True)
         else:
-            st.chat_message('Begin Conversation',avatar="icons\criminova.gif").write('Start Messaging')
+            st.chat_message('Begin Conversation',avatar="icons\\criminova.gif").write('Start Messaging')
     your_message=st.chat_input(on_submit=store_message)
     placeholder=st.empty() 
     if st.session_state.store_message:
@@ -58,7 +58,7 @@ def hot_cases():
                     hover_name='Nature of Case',
                     hover_data='Case Count',
                     barmode='overlay', # Group bars together
-                    color_discrete_sequence=['#000AEB'], # Set bar color
+                    color_discrete_sequence=['#0066ff'], # Set bar color
                     )    
         st.plotly_chart(fig,use_container_width=True)
     except Exception:
@@ -97,7 +97,6 @@ def daily_cases():
         st.plotly_chart(fig, use_container_width=True)
     except Exception as e:
         st.error(f'Something went wrong: {e}')
-
 
 
 def cases_over_time():
@@ -175,7 +174,7 @@ def combined_gender_chart():
                         #  title='Combined Victims and Suspects by Gender', 
                         labels={'Gender': 'Gender', 'value': 'Total Cases'},
                         width=800, height=400,
-                        color_discrete_map={'Total_Cases_Victims': 'blue', 'Total_Cases_Suspects': 'orange'},
+                        color_discrete_map={'Total_Cases_Victims': '#0066ff', 'Total_Cases_Suspects': 'orange'},
                         barmode='group',
                         )
             
@@ -191,7 +190,7 @@ def combined_gender_chart():
 
 # Display line chart for daily new cases
 def main(user):
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Dashboard</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Dashboard</p>', unsafe_allow_html=True)
     c1,c2=st.columns([2,1])
     with c1:
         with st.container(border=True):
@@ -209,6 +208,8 @@ def main(user):
     with st.container(border=True):
         st.write('<p style="color: white; border-bottom: 1px solid white; font-size: 20px; font-weight: bold">Victims and Suspects by Gender</p>', unsafe_allow_html=True)
         combined_gender_chart()
+    
+    db.footer() 
 
 
 if __name__=="__main__":

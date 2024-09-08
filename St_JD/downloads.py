@@ -18,7 +18,7 @@ def remove_on_click(placeholder,selected_file):
 
 
 def main(user):
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Downloads</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Downloads</p>', unsafe_allow_html=True)
     c1,c2=st.columns([3,2])
     with c1.container(border=True,height=460):
         st.write('<p style="color: white; border-bottom: 1px solid white; font-size: 20px; font-weight: bold">Download Case Report </p>', unsafe_allow_html=True)
@@ -77,9 +77,11 @@ def main(user):
         placeholder=st.empty() 
         st.button('Delete',on_click=remove_on_click(placeholder,selected_file))
         
-        st.write(f'<iframe src="data:application/pdf;base64,{file_base64}" width="800" height="500"></iframe>', unsafe_allow_html=True)
+        st.write(f'<iframe src="data:application/pdf;base64,{file_base64}" width="100%" height="800px"></iframe>', unsafe_allow_html=True)
     else:
         st.info('Select the downloads to view')
+    
+    db.footer()
         
 if __name__=="__main__":
     main('31jay')

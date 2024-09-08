@@ -48,7 +48,7 @@ def update_db(query,value,msg,place):
 
 # if __name__=="__main__":
 def case_investigation(username):
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Case Reports</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Case Reports</p>', unsafe_allow_html=True)
 
     conn=db.connect_db() 
     role=db.from_db(conn,f"select role from authorized where username='{username}'")
@@ -670,6 +670,8 @@ def case_investigation(username):
                 #     st.image('icons\dashboard_empty.png',use_column_width=True)
     except Exception as e:
         st.warning(f'Something wrong with database: {e}')
+    
+    db.footer() 
         
 
 if __name__=="__main__":

@@ -11,7 +11,7 @@ def lat_long(query):
 
 def map_lat_long(query,Additional=''):
     data=lat_long(query) 
-    m = folium.Map(location=[27.724502,85.339213], zoom_start=10,height=500,width=400,control_scale=True,zoom_control=True) 
+    m = folium.Map(location=[27.724502,85.339213], zoom_start=14,height=800,width=400,control_scale=True,zoom_control=True) 
     if data:
         for location in data:
             conn = db.connect_db()
@@ -69,12 +69,12 @@ def map_lat_long(query,Additional=''):
                     """
 
         st.markdown(html_content, unsafe_allow_html=True)
-        st_folium(m, use_container_width=True,height=400,returned_objects=[])
+        st_folium(m, use_container_width=True,height=600,returned_objects=[])
     else:
         st.warning('No records Found')
 
 def main(): 
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Case Mapping</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - Case Mapping</p>', unsafe_allow_html=True)
     conn=db.connect_db() 
     db_cases=db.get_all(conn,"Select nature_of_case from nature_of_case where case_count>0")
     try :
@@ -89,6 +89,7 @@ def main():
             map_lat_long("select lat, lng from caseReports") 
     except Exception as e:
         st.warning(f'Something went wrong: {e}')
-
+    db.footer() 
+    
 if __name__=="__main__":
     main()

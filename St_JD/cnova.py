@@ -39,7 +39,7 @@ def landing_page():
 
 
 def new_case_report():
-    st.write(f'<p style="color: blue; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - New Case Report</p>', unsafe_allow_html=True)
+    st.write(f'<p style="color: {db.headText}; border-bottom: 1px solid white; margin-top: -50px; font-size: 30px; font-weight: bold">{db.PROJECT} - New Case Report</p>', unsafe_allow_html=True)
     with st.container(border=True):
         col1,col2=st.columns([1,1],gap='Large')
         with col1:
@@ -183,15 +183,19 @@ def main():
                         else:
                             st.error('Invalid Password')
                     else:
-                        st.error('User not found')
-
-    
+                        st.error('User not found')    
     # After login
     if st.session_state['logged_in']:
         return landing_page()
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
+
+# Call the function and apply CSS globally
+    local_css("styles.css")
     user_exist=None 
     selected=main()
     if st.session_state.logged_in:
@@ -200,6 +204,7 @@ if __name__ == "__main__":
     if user_exist:    
         if selected=='New Report':
             new_case_report()
+            db.footer()
         elif selected=='Case Reports':
             caseReport.case_investigation(st.session_state.loggedin_user) 
         elif selected=='Investigators':

@@ -6,6 +6,7 @@ import folium
 import streamlit as st 
 
 PROJECT = "CrimeNetX"
+headText = "#66CCFF"
 
 DATABASE_CONFIG = {
     'user': 'postgres',
@@ -16,6 +17,7 @@ DATABASE_CONFIG = {
 }
 
 def hash_generator(password):
+    
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     return password_hash
 
@@ -210,3 +212,11 @@ def check_for_duplicates(user_input, existing_cases):
         return True, closest_match
     else:
         return False, ""
+    
+    
+def footer():
+    st.markdown("""
+                <br>
+                <hr>
+                <p style="text-align:center;align-items:baseline;">Copyright@ CrimeNetX, 2023</p>
+                """,unsafe_allow_html=True)    
