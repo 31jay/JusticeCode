@@ -99,7 +99,7 @@ def new_case_report():
             #location of incident: var=lat, long 
             lat,lng=db.lat_long()
 
-            sub_col1,sub_col2=st.columns([1,1])
+            # sub_col1,sub_col2=st.columns([1,1])
             # with sub_col2:
             submitted=st.button('Save Report',use_container_width=True)
         place=st.empty() 
