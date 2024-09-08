@@ -572,7 +572,7 @@ def case_investigation(username):
                     with sub2.popover('Similar Cases',use_container_width=True):
                         st.write('''<p style="color: green; border-bottom: 1px solid white; font-size: 20px; font-weight: bold">Similar to this case:</p>''', unsafe_allow_html=True)
                         conn=db.connect_db() 
-                        same_nature_cases=db.get_all(conn,f"select caseid, case_description,case_date from caseReports where nature_of_case='{selected_case_data[3]}' and caseid !='{selected_case_data[1]}")
+                        same_nature_cases=db.get_all(conn,f"select caseid, case_description,case_date from caseReports where nature_of_case='{selected_case_data[3]}' and caseid !='{selected_case_data[1]}'")
                         conn=db.connect_db()
                         same_victim_cases=db.get_all(conn,f'''
                                                 SELECT victims.caseid,case_description,case_date
