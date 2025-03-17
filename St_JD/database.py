@@ -8,21 +8,25 @@ import streamlit as st
 PROJECT = "CrimeNetX"
 headText = "#66CCFF"
 
-DATABASE_CONFIG = {
+//DATABASE_CONFIG = {
     'user': 'postgres',
     'password': 'ahjd',
     'host': 'localhost',
     'port': '5432',
     'database': 'criminovadb'
 }
+# Fetch DATABASE_URL from environment variables
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if not DATABASE_URL:
+    st.error("DATABASE_URL environment variable is not set")
 
 def hash_generator(password):
-    
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     return password_hash
 
 def connect_db():
-    conn = psycopg2.connect(**DATABASE_CONFIG)
+    conn = psycopg2.connect(DATABASE_URL)
     return conn
 
 def fetch_data(conn,table_name,check_attributes,fetch_attributes,data):
